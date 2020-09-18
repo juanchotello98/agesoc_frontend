@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col text-left">
           <div id="my-card" class="card">
             <div id="my-card-body" class="card-body">
               <form class="login form">
@@ -43,6 +43,7 @@
 
 <script>
 import axios from 'axios'
+import swal from 'sweetalert'
 export default {
   data () {
     return {
@@ -77,7 +78,7 @@ export default {
           const axiosInstance = axios.create(base)
           axiosInstance({
             //url: "/users/",
-            url:"/usuarios/?cedula="+this.cedula,
+            url:"/usuarios/?cedula="+this.cedula+'&password='+this.password,
             method: "get",
             params: {}
           })
@@ -89,7 +90,7 @@ export default {
             })
         })
         .catch((error) => {
-          swal("El usuario  no existe, por favor regístrate","","error")
+          swal("El usuario  no existe"," ","error")
           console.log(error);
           console.debug(error);
           console.dir(error);
