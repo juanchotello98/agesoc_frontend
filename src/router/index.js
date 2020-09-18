@@ -11,15 +11,14 @@ export default new Router({
   mode: history,
   routes: [
     {
-      path: '/',
+      path: '/inicio',
       name: 'Inicio',
       component: Inicio
     },
     {
-      path: '/login',
+      path: '/',
       name: 'Login',
-      meta: {layout: 'blank'},
-      //component: () => import('./vistas/Autentificacion/Login.vue')
+      component: Login
     }
 
   ],
