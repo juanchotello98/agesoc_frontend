@@ -8,6 +8,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import {store} from  './store'
 
+import Principal from './layouts/Principal.vue'
+import Login from './layouts/Login.vue'
+
+Vue.component('default-layout', Principal)
+Vue.component('blank-layout', Login)
+
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)

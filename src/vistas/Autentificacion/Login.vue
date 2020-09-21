@@ -90,7 +90,7 @@ export default {
             })
         })
         .catch((error) => {
-          swal("El usuario  no existe"," ","error")
+          swal("El usuario o contraseña son incorrectos"," ","error")
           console.log(error);
           console.debug(error);
           console.dir(error);

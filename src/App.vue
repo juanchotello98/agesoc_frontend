@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <img src="./assets/logo_agesoc.png">
-    <router-view/>
+    <component :is="layout">
+      <router-view/>
+    </component>
   </div>
 </template>
 
 <script>
+const defaultLayout = 'default'
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    layout(){
+      return (this.$route.meta.layout || defaultLayout ) + '-layout'
+    }
+  },
 }
 </script>
 
@@ -18,6 +25,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 </style>
