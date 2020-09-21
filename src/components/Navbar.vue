@@ -4,8 +4,7 @@
       <router-link to="/inicio">AGESOC</router-link>
     </div>
     <ul class="nav">
-      <li><em>¡Bienvenido!&nbsp;{{rol}}&nbsp;{{usuario}}</em></li>
-      <li><router-link to="/">Cerrar Sesión</router-link></li>
+      <li><b-dropdown-item v-on:click="cerrarSesion">Cerrar Sesión</b-dropdown-item></li>
     </ul>
   </nav>
 </template>
@@ -17,7 +16,13 @@ export default {
       usuario : this.$store.state.authUser[0].nombre,
       rol : this.$store.state.authUserþ[0].rol
     }
-  }
+  },
+  methods: {
+    cerrarSesion(){
+      this.$store.commit("removeToken")
+      this.$router.push({name: 'Login'})
+    }
+  },
 }
 </script>
 
