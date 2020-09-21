@@ -1,6 +1,6 @@
 <template>
   <div>
-    HOLA
+    HOLA {{usuario}}
   </div>
 </template>
 
@@ -8,7 +8,8 @@
 export default {
   data () {
     return {
-      Usuario : this.$store.state.authUser[0]
+      usuario : this.$store.state.authUser[0].nombre,
+      token: this.$store.state.jwt,
     }
   }
 }

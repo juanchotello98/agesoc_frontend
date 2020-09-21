@@ -10,6 +10,7 @@
       <div class="row">
         <div class="col text-left">
           <h4 id="title">SISTEMA DE EVALUACIÓN DE DESEMPEÑO</h4>
+          {{token}}
         </div>
       </div>
       <div class="row">
@@ -47,6 +48,7 @@ import swal from 'sweetalert'
 export default {
   data () {
     return {
+      token: this.$store.state.jwt,
       cedula: '',
       password: ''
     }
