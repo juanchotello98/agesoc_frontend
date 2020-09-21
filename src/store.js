@@ -10,6 +10,7 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 export const store = new Vuex.Store({
   state: {
+    procesoUsuario: localStorage.getItem('nombre'),
     authUser: {},
     isAuthenticated: false,
     jwt: localStorage.getItem('token'),
@@ -37,6 +38,16 @@ export const store = new Vuex.Store({
       // TODO: For security purposes, take localStorage out of the project.
       localStorage.removeItem('token');
       state.jwt = null;
-    }
+    },
+    updateProceso(state, newProceso) {
+      // TODO: For security purposes, take localStorage out of the project.
+      localStorage.setItem('nombre', newProceso);
+      state.procesoUsuario = newProceso;
+    },
+    removeProceso(state) {
+      // TODO: For security purposes, take localStorage out of the project.
+      localStorage.removeItem('nombre');
+      state.procesoUsuario = null;
+    },
   }
 });

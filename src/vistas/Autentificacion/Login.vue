@@ -1,11 +1,10 @@
-
 <template lang="html">
   <div>
     <div id="app">
       <img src='@/assets/logo_agesoc.png'>
     </div>
     <div>
-      </div>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col text-left">
@@ -86,7 +85,7 @@ export default {
               this.$store.commit("setAuthUser",
                 {authUser: response.data.results, isAuthenticated: true}
               )
-              this.$router.push({name: 'Inicio'})
+              this.$router.push({ path: 'Inicio'})
             })
         })
         .catch((error) => {

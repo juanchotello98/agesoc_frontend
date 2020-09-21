@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Inicio from '@/vistas/Inicio'
-//import Login from '@/vistas/Autentificacion/Login'
+import EncuestaEvaluado from '@/vistas/Encuestas/EncuestaEvaluado'
 
 
 Vue.use(Router)
@@ -21,6 +21,11 @@ export default new Router({
       path: '/inicio',
       name: 'Inicio',
       component: Inicio
+    },
+    {
+      path: '/encuesta_evaluado',
+      name: 'EncuestaEvaluado',
+      component: EncuestaEvaluado
     }
   ],
   mode: 'history'

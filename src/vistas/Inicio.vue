@@ -1,17 +1,30 @@
 <template>
   <div>
-    HOLA {{usuario}}
+    <div id="app">
+      <img src='@/assets/logo_agesoc.png'>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
-      usuario : this.$store.state.authUser[0].nombre,
-      token: this.$store.state.jwt,
+      idProcesoUsuario: this.$store.state.authUser[0].proceso,
     }
-  }
+  },
+  methods: {
+      getProceso(){
+        const path = 'http://localhost:8000/api/v1.0/procesos/'+this.idProcesoUsuario+'/'
+        axios.get(path, {'headers':{'Authorization' : 'JWT ' + this.$store.state.jwt}}).then((response) => {
+          this.$store.commit('updateProceso', response.data.nombre)
+        })
+      }
+  },
+  created() {
+    this.getProceso()
+  },
 }
 </script>
 
@@ -30,5 +43,10 @@ li {
 }
 a {
   color: #42b983;
+}
+#app{
+  text-align: center;
+  padding-left: 180px;
+  padding-top: 100px;
 }
 </style>

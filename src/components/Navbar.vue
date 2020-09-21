@@ -12,7 +12,7 @@
     </div>
     <div>
       <div>
-	      <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header visible width="250px">
+	      <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-close-on-route-change="true" no-header visible width="250px">
 	    	  <template v-slot:default="">
             <div class="p-3">
               <figure class="image-logo">
@@ -20,10 +20,8 @@
               </figure>
               <nav class="mb-3">
                 <b-nav vertical>
-                  <b-button class="btn" variant="primary" :to="{name: 'HelloWorld'}" block><b-icon icon="house-fill"></b-icon>&nbsp;&nbsp;Inicio</b-button>
-	              	<b-button class="btn" variant="primary" :to="{name: 'ListAccount'}" block><b-icon icon="credit-card"></b-icon>&nbsp;&nbsp;Cuentas</b-button>
-	              	<b-button class="btn" variant="primary" :to="{name: 'ListBudget'}" block><b-icon icon="wallet"></b-icon> &nbsp;Presupuestos</b-button>
-                  <b-button class="btn" variant="primary" :to="{name: 'ListTransaction'}" block><b-icon icon="arrow-left-right"></b-icon> &nbsp;Transacciones</b-button>
+                  <b-button class="btn"  :to="{name: 'Inicio'}" block><b-icon icon="house-fill"></b-icon>&nbsp;&nbsp;Inicio</b-button>
+	              	<b-button class="btn"  :to="{name: 'EncuestaEvaluado'}" block><b-icon icon="clipboard-check"></b-icon>&nbsp;&nbsp;Responder Encuesta</b-button>
 	            	</b-nav>
 	          	</nav>
 	        	</div>
@@ -45,6 +43,7 @@ export default {
   methods: {
     cerrarSesion(){
       this.$store.commit("removeToken")
+      this.$store.commit("removeProceso")
       this.$router.push({name: 'Login'})
     }
   },
@@ -92,5 +91,6 @@ export default {
   }
   .btn{
     text-align: left;
+    background-color:#0473bc;
   }
 </style>
