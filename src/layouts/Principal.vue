@@ -1,12 +1,15 @@
 <template>
   <div>
-    <div>
-      <h1>
-        NO SIDEBAR
-      </h1>
-    </div>
-    <div class="container">
+    <Navbar/>
+    <main class="main">
       <slot/>
-    </div>
+    </main>
   </div>
 </template>
+
+<script>
+import Navbar from '@/components/Navbar'
+export default {
+  components: {Navbar}
+}
+</script>
