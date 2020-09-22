@@ -5,8 +5,8 @@
         <div class="col text-left">
           <b>FORMATO EVALUACION DE DESEMPEÑO</b><br>
           <b>PARA LOS AFILIADOS VINCULADOS QUE DESARROLLAN SU ACTIVIDAD COLECTIVA EN LA ZONA 211</b>
-      </div>
         </div>
+      </div>
       <div class="row">
         <div class="col">
           <div class="card">
@@ -48,10 +48,20 @@
 
                   <label for="actividad_colectiva" class="col-md-2 col-form-label">Actividad Colectiva:</label>
                   <div class="col-md-4">
-                    <input v-model="form.actividad_colectiva" disabled="true" type="text" name="actividad_colectiva" class="form-control">
+                    <input v-model="actividad_colectiva" disabled="true" type="text" name="actividad_colectiva" class="form-control">
                   </div>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
             </div>
           </div>
         </div>
@@ -71,10 +81,8 @@ export default {
       apellido:'',
       cedula:'',
       proceso: '',
-      ips:'',
-      form:[
-        {actividad_colectiva : ''}
-      ]
+      ips :'',
+      actividad_colectiva : ''
     }
   },
   computed: {
@@ -89,11 +97,11 @@ export default {
           this.cedula = response.data.cedula
           this.proceso = response.data.proceso
           this.ips = response.data.ips
-          this.form.actividad_colectiva = response.data.actividad_colectiva
+          this.actividad_colectiva = response.data.actividad_colectiva
 				})
 				.catch((error) => {
+          })
 					console.log(error)
-				})
       },
   },
   created() {

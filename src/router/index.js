@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 import Inicio from '@/vistas/Inicio'
 import EncuestaEvaluado from '@/vistas/Encuestas/EncuestaEvaluado'
+import CrearCargo from '@/vistas/Cargo/CrearCargo'
+import ListarCargo from '@/vistas/Cargo/ListarCargo'
 
 
 Vue.use(Router)
@@ -26,6 +28,16 @@ export default new Router({
       path: '/encuesta_evaluado',
       name: 'EncuestaEvaluado',
       component: EncuestaEvaluado
+    },
+    {
+      path: '/crear_cargo',
+      name: 'CrearCargo',
+      component: CrearCargo
+    },
+    {
+      path: '/lista_cargo',
+      name: 'ListarCargo',
+      component: ListarCargo
     }
   ],
   mode: 'history'
