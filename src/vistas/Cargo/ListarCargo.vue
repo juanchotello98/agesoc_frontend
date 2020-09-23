@@ -11,19 +11,20 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col text-left">
         <div v-if="cargos.length===0" class="col-md-10">
-        <b-spinner variant="primary" label="Spinning"></b-spinner>
-        <span class="primary">Cargando...</span>
-      </div>
-      <div v-else class="col-md-10">
-        <b-table class="tabla" small id="tabla" striped hover :items="cargos" :fields="campos" :per-page="perPage" :current-page="currentPage" default>
-          <template v-slot:cell(action)="data">
-          </template>
-        </b-table>
-        <b-pagination align="center" v-model="currentPage" :total-rows="rows" :per-page="perPage" :aria-controls="tabla">
-        </b-pagination>
-      </div>
+          <b-spinner variant="primary" label="Spinning"></b-spinner>
+          <span class="primary">Cargando...</span>
+        </div>
+        <div v-else class="col-md-10">
+          <b-table class="tabla" small id="tabla" striped hover :items="cargos" :fields="campos" :per-page="perPage" :current-page="currentPage" default>
+            <template v-slot:cell(action)="data">
+              <b-button size="sm" variant="primary" :to="{ name: 'EditarCargo', params: { cargoId: data.item.id } }">Editar</b-button>
+            </template>
+          </b-table>
+          <b-pagination align="center" v-model="currentPage" :total-rows="rows" :per-page="perPage" :aria-controls="tabla">
+          </b-pagination>
+        </div>
       </div>
     </div>
   </div>
@@ -37,7 +38,8 @@ export default {
     return {
       campos:[
         { key: 'id', label: 'ID' },
-        { key: 'nombre', label: 'Nombre' }
+        { key: 'nombre', label: 'Nombre' },
+        { key: 'action', label: ''}
       ],
       cargos: [],
       perPage: 7,
