@@ -5,7 +5,7 @@ import Inicio from '@/vistas/Inicio'
 import EncuestaEvaluado from '@/vistas/Encuestas/EncuestaEvaluado'
 import CrearCargo from '@/vistas/Cargo/CrearCargo'
 import ListarCargo from '@/vistas/Cargo/ListarCargo'
-
+import EditarCargo from '@/vistas/Cargo/EditarCargo'
 
 Vue.use(Router)
 
@@ -38,6 +38,11 @@ export default new Router({
       path: '/lista_cargo',
       name: 'ListarCargo',
       component: ListarCargo
+    },
+    {
+      path: '/cargos/:cargoId/editar_cargo',
+      name: 'EditarCargo',
+      component: EditarCargo
     }
   ],
   mode: 'history'

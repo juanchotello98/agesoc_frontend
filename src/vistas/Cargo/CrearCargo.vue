@@ -48,7 +48,6 @@ export default {
       evt.preventDefault()
       let form = {
         "nombre" : this.nombre,
-        "usuarios" : ''
       };
       const path =  'http://localhost:8000/api/v1.0/cargos/'
       axios.post(path, form, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
