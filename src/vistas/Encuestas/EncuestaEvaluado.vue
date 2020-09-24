@@ -63,7 +63,7 @@
           <div class="card">
             <div class="card-body">
               <form @submit="onSubmit" name="encuesta" id="encuesta">
-                <table class="mitable">
+                <table id="mitable" class="mt-2 table table-bordered table-striped table-responsive">
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -80,7 +80,7 @@
                         {{pregunta.nombre}}
                       </td>
                       <td>
-                      <select v-model="pregunta.respuesta" @change="setSeleccion(pregunta)" id="respuesta">
+                      <select id="respuesta" v-model="pregunta.respuesta" @change="setSeleccion(pregunta)">
                         <option v-for="respuesta in respuestas" :key="respuesta.id">{{respuesta.seleccion}}</option>
                       </select>
                       </td>
@@ -145,7 +145,6 @@ export default {
       proceso: '',
       ips :'',
       actividad_colectiva : '',
-      seleccion:'',
       preguntas:[],
       respuestas:[],
       listaRespuestaEncuesta:[],
@@ -238,7 +237,11 @@ export default {
   .card{
     width: 1200px;
   }
-  .mitable{
-    width: 900px;
+  #mitable{
+    width: 960px;
+  }
+  #respuesta{
+    width: 70px;
+    text-align: center;
   }
 </style>
