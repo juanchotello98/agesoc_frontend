@@ -34,7 +34,7 @@
                   <div class="col-sm-3">
                     <input v-model="cedula" disabled="true" type="text" name="cedula" class="form-control" />
                   </div>
-                  <label for="proceso" class="col-md-2 col-form-label">Area o Proceso:</label>
+                  <label for="proceso" class="col-md-2 col-form-label">Área o Proceso:</label>
                   <div class="col-md-4">
                     <input v-model="this.nombreProcesoUsuario" disabled="true" type="text" name="proceso" class="form-control">
                   </div>
@@ -87,21 +87,6 @@
                     </tr>
                   </tbody>
                 </table>
-                <!--<div v-if="preguntas.length===0" class="col-md-12">
-                  <b-spinner variant="primary" label="Spinning"></b-spinner>
-                  <span class="primary">Cargando...</span>
-                </div>
-                <div v-else class="col-md-10">
-                  <b-table @row-selected="respuesta" class="tabla" small id="tabla" striped hover :items="preguntas" :fields="campos" :per-page="perPage" :current-page="currentPage" default>
-                    <template v-slot:cell(action)="data">
-                      <select v-model="data.value" @change="setSeleccion($event)" class="form-control" id="respuesta">
-                        <option v-for="respuesta in respuestas" :value="respuesta.id">{{respuesta.seleccion}}</option>
-                      </select>
-                    </template>
-                  </b-table>
-                  <b-pagination align="center" v-model="currentPage" :total-rows="rows" :per-page="perPage" :aria-controls="tabla">
-                </b-pagination>
-                </div>-->
                 <br>
                <div class="row">
                 <div class="col text-left">
@@ -121,9 +106,6 @@
 <script>
 import axios from 'axios'
 export default {
-  beforeCreate() {
-
-  },
   data() {
     return {
       campos:[
