@@ -9,6 +9,9 @@ import EditarCargo from '@/vistas/Cargo/EditarCargo'
 import CrearRol from '@/vistas/Rol/CrearRol'
 import ListarRol from '@/vistas/Rol/ListarRol'
 import EditarRol from '@/vistas/Rol/EditarRol'
+import CrearTipoproceso from '@/vistas/Tipoproceso/CrearTipoproceso'
+import ListarTipoproceso from '@/vistas/Tipoproceso/ListarTipoproceso'
+import EditarTipoproceso from '@/vistas/Tipoproceso/EditarTipoproceso'
 
 Vue.use(Router)
 
@@ -61,6 +64,21 @@ export default new Router({
       path: '/roles/:rolId/editar_rol',
       name: 'EditarRol',
       component: EditarRol
+    },
+    {
+      path: '/crear_tipoproceso',
+      name: 'CrearTipoproceso',
+      component: CrearTipoproceso
+    },
+    {
+      path: '/lista_tipoproceso',
+      name: 'ListarTipoproceso',
+      component: ListarTipoproceso
+    },
+    {
+      path: '/tipoprocesos/:tipoprocesoId/editar_tipoproceso',
+      name: 'EditarTipoproceso',
+      component: EditarTipoproceso
     }
   ],
   mode: 'history'
