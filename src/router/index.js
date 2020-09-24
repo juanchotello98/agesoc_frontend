@@ -15,6 +15,9 @@ import EditarTipoproceso from '@/vistas/Tipoproceso/EditarTipoproceso'
 import CrearProceso from '@/vistas/Proceso/CrearProceso'
 import ListarProceso from '@/vistas/Proceso/ListarProceso'
 import EditarProceso from '@/vistas/Proceso/EditarProceso'
+import CrearPregunta from '@/vistas/Pregunta/CrearPregunta'
+import ListarPregunta from '@/vistas/Pregunta/ListarPregunta'
+import EditarPregunta from '@/vistas/Pregunta/EditarPregunta'
 
 Vue.use(Router)
 
@@ -97,6 +100,21 @@ export default new Router({
       path: '/procesos/:procesoId/editar_proceso',
       name: 'EditarProceso',
       component: EditarProceso
+    },
+    {
+      path: '/crear_pregunta',
+      name: 'CrearPregunta',
+      component: CrearPregunta
+    },
+    {
+      path: '/lista_pregunta',
+      name: 'ListarPregunta',
+      component: ListarPregunta
+    },
+    {
+      path: '/preguntas/:preguntaId/editar_pregunta',
+      name: 'EditarPregunta',
+      component: EditarPregunta
     }
   ],
   mode: 'history'
