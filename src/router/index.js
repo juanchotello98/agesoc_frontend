@@ -18,6 +18,9 @@ import EditarProceso from '@/vistas/Proceso/EditarProceso'
 import CrearPregunta from '@/vistas/Pregunta/CrearPregunta'
 import ListarPregunta from '@/vistas/Pregunta/ListarPregunta'
 import EditarPregunta from '@/vistas/Pregunta/EditarPregunta'
+import CrearRespuesta from '@/vistas/Respuesta/CrearRespuesta'
+import ListarRespuesta from '@/vistas/Respuesta/ListarRespuesta'
+import EditarRespuesta from '@/vistas/Respuesta/EditarRespuesta'
 
 Vue.use(Router)
 
@@ -115,6 +118,21 @@ export default new Router({
       path: '/preguntas/:preguntaId/editar_pregunta',
       name: 'EditarPregunta',
       component: EditarPregunta
+    },
+    {
+      path: '/crear_respuesta',
+      name: 'CrearRespuesta',
+      component: CrearRespuesta
+    },
+    {
+      path: '/lista_respuesta',
+      name: 'ListarRespuesta',
+      component: ListarRespuesta
+    },
+    {
+      path: '/respuestas/:respuestaId/editar_respuesta',
+      name: 'EditarRespuesta',
+      component: EditarRespuesta
     }
   ],
   mode: 'history'
