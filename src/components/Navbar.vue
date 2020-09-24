@@ -23,6 +23,7 @@
                   <b-button class="btn"  :to="{name: 'Inicio'}" block><b-icon icon="house-fill"></b-icon>&nbsp;&nbsp;Inicio</b-button>
 	              	<b-button class="btn"  :to="{name: 'EncuestaEvaluado'}" block><b-icon icon="clipboard-check"></b-icon>&nbsp;&nbsp;Responder Encuesta</b-button>
                   <b-button class="btn"  :to="{name: 'ListarCargo'}" block><b-icon icon="briefcase-fill"></b-icon>&nbsp;&nbsp;Cargos</b-button>
+                  <b-button class="btn"  :to="{name: 'ListarRol'}" block><b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Roles</b-button>
 	            	</b-nav>
 	          	</nav>
 	        	</div>

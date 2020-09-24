@@ -6,6 +6,9 @@ import EncuestaEvaluado from '@/vistas/Encuestas/EncuestaEvaluado'
 import CrearCargo from '@/vistas/Cargo/CrearCargo'
 import ListarCargo from '@/vistas/Cargo/ListarCargo'
 import EditarCargo from '@/vistas/Cargo/EditarCargo'
+import CrearRol from '@/vistas/Rol/CrearRol'
+import ListarRol from '@/vistas/Rol/ListarRol'
+import EditarRol from '@/vistas/Rol/EditarRol'
 
 Vue.use(Router)
 
@@ -43,6 +46,21 @@ export default new Router({
       path: '/cargos/:cargoId/editar_cargo',
       name: 'EditarCargo',
       component: EditarCargo
+    },
+    {
+      path: '/crear_rol',
+      name: 'CrearRol',
+      component: CrearRol
+    },
+    {
+      path: '/lista_cargo',
+      name: 'ListarRol',
+      component: ListarRol
+    },
+    {
+      path: '/roles/:rolId/editar_rol',
+      name: 'EditarRol',
+      component: EditarRol
     }
   ],
   mode: 'history'

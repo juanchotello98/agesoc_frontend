@@ -53,6 +53,7 @@ export default {
       axios.post(path, form, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
         this.nombre = response.data.nombre
         swal("Cargo creado exitosamente","","success")
+        this.$router.push({ name: 'ListarCargo'})
       })
       .catch((error) => {
         console.log(error)
