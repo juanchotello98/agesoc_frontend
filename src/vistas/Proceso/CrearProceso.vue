@@ -58,12 +58,12 @@ export default {
     onSubmit(evt){
       evt.preventDefault()
       let form = {
-        "nombre" : this.nombre,
+        "proceso" : this.nombre,
         "tipoproceso" : this.tipoproceso
       };
       const path =  'http://localhost:8000/api/v1.0/procesos/'
       axios.post(path, form, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
-        this.nombre = response.data.nombre
+        this.nombre = response.data.proceso
         this.tipoproceso = response.data.tipoproceso
         swal("Proceso creado exitosamente","","success")
         this.$router.push({ name: 'ListarProceso'})

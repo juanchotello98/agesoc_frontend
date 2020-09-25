@@ -38,7 +38,7 @@ export default {
     return {
       campos:[
         { key: 'id', label: 'ID' },
-        { key: 'nombre', label: 'Nombre' },
+        { key: 'rol', label: 'Nombre' },
         { key: 'action', label: ''}
       ],
       roles: [],

@@ -12,18 +12,26 @@ export default {
   data () {
     return {
       idProcesoUsuario: this.$store.state.authUser[0].proceso,
+      idRolUsuario: this.$store.state.authUser[0].rol
     }
   },
   methods: {
       getProceso(){
         const path = 'http://localhost:8000/api/v1.0/procesos/'+this.idProcesoUsuario+'/'
         axios.get(path, {'headers':{'Authorization' : 'JWT ' + this.$store.state.jwt}}).then((response) => {
-          this.$store.commit('updateProceso', response.data.nombre)
+          this.$store.commit('updateProceso', response.data.proceso)
+        })
+      },
+        getRol(){
+        const path = 'http://localhost:8000/api/v1.0/roles/'+this.idRolUsuario+'/'
+        axios.get(path, {'headers':{'Authorization' : 'JWT ' + this.$store.state.jwt}}).then((response) => {
+          this.$store.commit('updateRol', response.data.rol)
         })
       }
   },
   created() {
     this.getProceso()
+    this.getRol()
   },
 }
 </script>

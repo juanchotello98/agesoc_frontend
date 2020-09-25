@@ -38,7 +38,7 @@ export default {
     return {
       campos:[
         { key: 'id', label: 'ID' },
-        { key: 'nombre', label: 'Nombre' },
+        { key: 'proceso', label: 'Nombre' },
         { key: 'tipoproceso', label: 'Tipo de proceso' },
         { key: 'action', label: ''}
       ],

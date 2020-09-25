@@ -13,6 +13,7 @@
             <div class="card-body">
               <form name="form" id="form">
                 <div class="form-grup row">
+                  <label for=tititulo class="col-sm-10 col-form-label"><b>Usted está respondiendo esta evaluacion con el rol de:  {{nombreRolUsuario}}</b></label>
                   <label for=tititulo class="col-sm-10 col-form-label"><b>DATOS DEL EVALUADO</b></label>
                 </div>
                 <br>
@@ -117,10 +118,11 @@ export default {
       currentPage: 1,
 
       idUsuario: this.$store.state.authUser[0].id,
-      rolUsuario: this.$store.state.authUser[0].rol,
       procesoUsuario: this.$store.state.authUser[0].proceso,
 
       nombreProcesoUsuario: this.$store.state.procesoUsuario,
+      nombreRolUsuario: this.$store.state.rolUsuario,
+
       nombre:'',
       apellido:'',
       cedula:'',
