@@ -20,7 +20,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="nombre" class="col-sm-2 col-form-label">Tipo de proceso:</label>
+                  <label for="tipoproceso" class="col-sm-2 col-form-label">Tipo de proceso:</label>
                   <div class="col-sm-8">
                     <select v-model="tipoproceso" class="form-control" id="tipoproceso">
                       <option v-for="tipoproceso in tipoprocesos" :value="tipoproceso.id">{{tipoproceso.nombre}}</option>
