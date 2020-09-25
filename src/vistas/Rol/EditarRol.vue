@@ -47,12 +47,12 @@ export default {
   methods: {
     onSubmit(evt){
       let form = {
-        "nombre" : this.nombre,
+        "rol" : this.nombre,
       };
       evt.preventDefault()
       const path =  'http://localhost:8000/api/v1.0/roles/'+this.rolId+'/'
       axios.put(path,form, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
-        this.nombre = response.data.nombre
+        this.nombre = response.data.rol
         swal("Rol editado exitosamente","","success")
         this.$router.push({ name: 'ListarRol'})
       })
@@ -65,7 +65,7 @@ export default {
     getRol(){
       const path =  'http://localhost:8000/api/v1.0/roles/'+this.rolId+'/'
       axios.get(path, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
-        this.nombre = response.data.nombre
+        this.nombre = response.data.rol
       })
       .catch((error) => {
         console.log(error)

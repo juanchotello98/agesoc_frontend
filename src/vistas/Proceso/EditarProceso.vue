@@ -48,13 +48,13 @@ export default {
   methods: {
     onSubmit(evt){
       let form = {
-        "nombre" : this.nombre,
+        "proceso" : this.nombre,
         "tipoproceso" : this.tipoproceso
       };
       evt.preventDefault()
       const path =  'http://localhost:8000/api/v1.0/procesos/'+this.procesoId+'/'
       axios.put(path,form, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
-        this.nombre = response.data.nombre
+        this.nombre = response.data.proceso
         swal("Proceso editado exitosamente","","success")
         this.$router.push({ name: 'ListarProceso'})
       })
@@ -67,7 +67,7 @@ export default {
     getProceso(){
       const path =  'http://localhost:8000/api/v1.0/procesos/'+this.procesoId+'/'
       axios.get(path, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
-        this.nombre = response.data.nombre
+        this.nombre = response.data.proceso
         this.tipoproceso = response.data.tipoproceso
 
       })

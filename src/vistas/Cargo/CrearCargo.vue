@@ -47,11 +47,11 @@ export default {
     onSubmit(evt){
       evt.preventDefault()
       let form = {
-        "nombre" : this.nombre,
+        "cargo" : this.nombre,
       };
       const path =  'http://localhost:8000/api/v1.0/cargos/'
       axios.post(path, form, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
-        this.nombre = response.data.nombre
+        this.nombre = response.data.cargo
         swal("Cargo creado exitosamente","","success")
         this.$router.push({ name: 'ListarCargo'})
       })

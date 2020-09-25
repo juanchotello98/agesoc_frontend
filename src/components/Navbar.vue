@@ -42,14 +42,14 @@
 export default {
   data () {
     return {
-      usuario : this.$store.state.authUser[0].nombre,
-      rol : this.$store.state.authUser[0].rol
+      usuario : this.$store.state.authUser[0].nombre
     }
   },
   methods: {
     cerrarSesion(){
       this.$store.commit("removeToken")
       this.$store.commit("removeProceso")
+      this.$store.commit('removeRol')
       this.$router.push({name: 'Login'})
     }
   },

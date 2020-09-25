@@ -47,12 +47,12 @@ export default {
   methods: {
     onSubmit(evt){
       let form = {
-        "nombre" : this.nombre,
+        "cargo" : this.nombre,
       };
       evt.preventDefault()
       const path =  'http://localhost:8000/api/v1.0/cargos/'+this.cargoId+'/'
       axios.put(path,form, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
-        this.nombre = response.data.nombre
+        this.nombre = response.data.cargo
         swal("Cargo editado exitosamente","","success")
         this.$router.push({ name: 'ListarCargo'})
       })
@@ -65,7 +65,7 @@ export default {
     getCargo(){
       const path =  'http://localhost:8000/api/v1.0/cargos/'+this.cargoId+'/'
       axios.get(path, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
-        this.nombre = response.data.nombre
+        this.nombre = response.data.cargo
       })
       .catch((error) => {
         console.log(error)
