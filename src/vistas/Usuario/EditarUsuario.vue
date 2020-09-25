@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col text-left">
-        <b><h3>EDITAR USUARIO</h3></b>
+        <b><h3>EDITAR USUARIO </h3></b>
       </div>
     </div>
     <div class="row">
@@ -81,6 +81,14 @@
                   </div>
               </div>
 
+              <div class="form-group row">
+                  <label for="eps" class="col-sm-2 col-form-label">¿Ya respondio su evaluación?:</label>
+                  <div class="col-sm-8">
+                    <b-form-radio v-model="respondio" name="some-radios" value=true>SI</b-form-radio>
+                    <b-form-radio v-model="respondio" name="some-radios" value=false>NO</b-form-radio>
+                  </div>
+              </div>
+
               <br>
               <div class="row">
                 <div class="col text-left">
@@ -139,7 +147,7 @@ export default {
         "rol" : this.rol,
         "respondio" : this.respondio
       };
-      const path =  'http://localhost:8000/api/v1.0/usuarios/'
+      const path =  'http://localhost:8000/api/v1.0/usuarios/'+this.usuarioId+'/'
       axios.put(path, form, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
         swal("Usuario editado exitosamente","","success")
         this.$router.push({ name: 'ListarUsuario'})
@@ -162,7 +170,7 @@ export default {
         this.cargo = response.data.cargo
         this.proceso = response.data.proceso
         this.rol = response.data.rol
-        this.respondido = response.data.respondido
+        this.respondio = response.data.respondio
       })
       .catch((error) => {
         console.log(error)
