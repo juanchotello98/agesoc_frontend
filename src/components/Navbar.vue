@@ -26,8 +26,8 @@
                   <b-button class="btn"  :to="{name: 'ListarRespuesta'}" block><b-icon icon="check-square-fill"></b-icon>&nbsp;&nbsp;Respuestas</b-button>
                   <b-button class="btn"  :to="{name: 'ListarCargo'}" block><b-icon icon="briefcase-fill"></b-icon>&nbsp;&nbsp;Cargos</b-button>
                   <b-button class="btn"  :to="{name: 'ListarRol'}" block><b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Roles</b-button>
-                  <b-button class="btn"  :to="{name: 'ListarTipoproceso'}" block><b-icon icon="collection-fill"></b-icon>&nbsp;&nbsp;Tipos de proceso</b-button>
-                  <b-button class="btn"  :to="{name: 'ListarProceso'}" block><b-icon icon="collection"></b-icon>&nbsp;&nbsp;Procesos</b-button>
+                  <b-button class="btn"  :to="{name: 'ListarTipoproceso'}" block><b-icon icon="collection"></b-icon>&nbsp;&nbsp;Tipos de proceso</b-button>
+                  <b-button class="btn"  :to="{name: 'ListarProceso'}" block><b-icon icon="collection-fill"></b-icon>&nbsp;&nbsp;Procesos</b-button>
 	            	</b-nav>
 	          	</nav>
 	        	</div>

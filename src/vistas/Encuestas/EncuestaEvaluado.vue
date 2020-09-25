@@ -80,7 +80,7 @@
                         {{pregunta.nombre}}
                       </td>
                       <td>
-                      <select id="respuesta" v-model="pregunta.respuesta" @change="setSeleccion(pregunta)">
+                      <select id="respuesta" v-model="pregunta.respuesta" @change="setSeleccionvdos(pregunta)">
                         <option v-for="respuesta in respuestas" :key="respuesta.id">{{respuesta.seleccion}}</option>
                       </select>
                       </td>
@@ -90,7 +90,7 @@
                 <br>
                <div class="row">
                 <div class="col text-left">
-                  <b-button type="submit" class="btn-large-space" variant="success">Enviar</b-button>
+                  <b-button :disabled="isDisabled" type="submit" class="btn-large-space" variant="success">Enviar</b-button>
                   <b-button :to="{name: 'Inicio'}" class="btn" variant="secondary">Volver</b-button>
                 </div>
               </div>
@@ -140,7 +140,14 @@ export default {
     }
   },
   computed: {
-    //
+    isDisabled(){
+      if  (this.listaRespuestaEncuesta.length===this.preguntas.length){
+        return false
+      }
+      else{
+        return true
+      }
+    }
   },
   methods: {
     onSubmit(evt){
@@ -191,7 +198,7 @@ export default {
         console.log(error)
       })
     },
-    setSeleccion(pregunta){
+    setSeleccionvuno(pregunta){
       this.respuestaEncuesta.pregunta = pregunta.id
       this.respuestaEncuesta.respuesta = pregunta.respuesta
       this.respuestaEncuesta.evaluado = this.idUsuario
@@ -201,6 +208,49 @@ export default {
       console.log(pregunta)
       console.log(this.listaRespuestaEncuesta)
       this.respuestaEncuesta = { }
+    },
+    setSeleccionvdos(pregunta){
+      let repetido = null
+      let index = 0
+
+      if (this.listaRespuestaEncuesta.length != 0){
+        this.listaRespuestaEncuesta.forEach(element => {
+          if(element.pregunta == pregunta.id){
+            repetido = true
+            index = this.listaRespuestaEncuesta.indexOf(element)
+            console.log("Index:" +index)
+          }
+        });
+        if(repetido==true){
+          console.log("modifica obj repetido")
+            this.listaRespuestaEncuesta[index].respuesta = pregunta.respuesta
+            console.log(this.listaRespuestaEncuesta)
+            this.respuestaEncuesta = { }
+          }else{
+            console.log("crear obj si no esta repetido")
+            this.respuestaEncuesta.pregunta = pregunta.id
+            this.respuestaEncuesta.respuesta = pregunta.respuesta
+            this.respuestaEncuesta.evaluado = this.idUsuario
+            this.respuestaEncuesta.rol = this.rolUsuario
+            this.respuestaEncuesta.proceso = this.procesoUsuario
+            this.listaRespuestaEncuesta.push(this.respuestaEncuesta)
+            console.log(this.listaRespuestaEncuesta)
+            this.respuestaEncuesta = { }
+          }
+      }else{
+        console.log("crear primer obj")
+        this.respuestaEncuesta.pregunta = pregunta.id
+        this.respuestaEncuesta.respuesta = pregunta.respuesta
+        this.respuestaEncuesta.evaluado = this.idUsuario
+        this.respuestaEncuesta.rol = this.rolUsuario
+        this.respuestaEncuesta.proceso = this.procesoUsuario
+        this.listaRespuestaEncuesta.push(this.respuestaEncuesta)
+        console.log(this.listaRespuestaEncuesta)
+        this.respuestaEncuesta = { }
+      }
+
+
+
     }
   },
   created() {
