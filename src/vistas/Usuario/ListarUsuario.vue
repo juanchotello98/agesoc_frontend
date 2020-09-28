@@ -29,7 +29,8 @@
           <div v-else class="col-md-10">
             <b-table class="tabla" id="tabla" striped hover :items="usuarios" :fields="campos" :per-page="perPage" :current-page="currentPage" default>
               <template v-slot:cell(action)="data">
-                <b-button size="sm" variant="primary" :to="{ name: 'EditarUsuario', params: { usuarioId: data.item.id } }">Editar</b-button>
+                <b-button size="sm" variant="primary" :to="{ name: 'EditarUsuario', params: { usuarioId : data.item.id } }">Editar</b-button>
+                <b-button size="sm" variant="success" :to="{ name: 'EncuestaEvaluador', params: { idUsuario: data.item.id } }">Evaluar</b-button>
               </template>
             </b-table>
             <b-pagination align="center" v-model="currentPage" :total-rows="rows" :per-page="perPage" :aria-controls="tabla">
