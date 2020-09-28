@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="form-group row">
-                  <label for="ips" class="col-sm-1 col-form-label">IPS:</label>
+                  <label for="ips" class="col-sm-1 col-form-label">EPS:</label>
                   <div class="col-sm-3">
                     <input v-model="ips" disabled="true" type="text" name="ips" class="form-control">
                   </div>
@@ -58,44 +58,57 @@
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col text-left">
-          <div class="card">
-            <div class="card-body">
-              <form @submit="onSubmit" name="encuesta" id="encuesta">
-                <table id="mitable" class="mt-2 table table-bordered table-striped table-responsive">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Pregunta</th>
-                      <th>Respuesta</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="pregunta in preguntas" :key="pregunta.id">
-                      <td>
-                        {{pregunta.id}}
-                      </td>
-                      <td>
-                        {{pregunta.nombre}}
-                      </td>
-                      <td>
-                      <select id="respuesta" v-model="pregunta.respuesta" @change="setSeleccionvdos(pregunta)">
-                        <option v-for="respuesta in respuestas" :key="respuesta.id">{{respuesta.seleccion}}</option>
-                      </select>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <br>
-               <div class="row">
-                <div class="col text-left">
-                  <b-button :disabled="isDisabled" type="submit" class="btn-large-space" variant="success">Enviar</b-button>
-                  <b-button :to="{name: 'Inicio'}" class="btn" variant="secondary">Volver</b-button>
+
+    <div v-if="this.respondioUsuario==this.RESPONDIO">
+      <div class="container">
+        <div class="row">
+          <div class="col text-left">
+            <b><h3>USTED YA RESPONDIÓ SU EVALUACIÓN</h3></b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-else>
+      <div class="container">
+        <div class="row">
+          <div class="col text-left">
+            <div class="card">
+              <div class="card-body">
+                <form @submit="onSubmit" name="encuesta" id="encuesta">
+                  <table id="mitable" class="mt-2 table table-bordered table-striped table-responsive">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Pregunta</th>
+                        <th>Respuesta</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="pregunta in preguntas" :key="pregunta.id">
+                        <td>
+                          {{pregunta.id}}
+                        </td>
+                        <td>
+                          {{pregunta.nombre}}
+                        </td>
+                        <td>
+                        <select id="respuesta" v-model="pregunta.respuesta" @change="setSelecciones(pregunta)">
+                          <option v-for="respuesta in respuestas" :key="respuesta.id">{{respuesta.seleccion}}</option>
+                        </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <br>
+                <div class="row">
+                  <div class="col text-left">
+                    <b-button :disabled="isDisabled" type="submit" class="btn-large-space" variant="success">Enviar</b-button>
+                    <b-button :to="{name: 'Inicio'}" class="btn" variant="secondary">Volver</b-button>
+                  </div>
                 </div>
+                </form>
               </div>
-              </form>
             </div>
           </div>
         </div>
@@ -109,6 +122,7 @@ import axios from 'axios'
 export default {
   data() {
     return {
+      RESPONDIO : true,
       campos:[
         { key: 'id', label: 'ID'},
         { key: 'nombre', label: 'Item' },
@@ -120,7 +134,7 @@ export default {
       idUsuario: this.$store.state.authUser[0].id,
       rolUsuario: this.$store.state.authUser[0].rol,
       procesoUsuario: this.$store.state.authUser[0].proceso,
-
+      respondioUsuario : this.$store.state.authUser[0].respondio,
       nombreProcesoUsuario: this.$store.state.procesoUsuario,
       nombreRolUsuario: this.$store.state.rolUsuario,
 
@@ -130,9 +144,14 @@ export default {
       proceso: '',
       ips :'',
       actividad_colectiva : '',
+      cargo: this.$store.state.authUser[0].cargo,
+      rol : this.$store.state.authUser[0].rol,
+      password : this.$store.state.authUser[0].password,
+
       preguntas:[],
       respuestas:[],
       listaRespuestaEncuesta:[],
+
       respuestaEncuesta : {
           pregunta:'',
           respuesta:'',
@@ -160,12 +179,15 @@ export default {
       axios.post(path, lista, {'headers': {'Authorization': 'JWT ' + this.$store.state.jwt}}).then((response) => {
         console.log(path)
         this.nombre = response.data.nombre
-        swal("Encuesta guardada exitosamente","","success")
+        swal("Evaluación guardada exitosamente","","success")
       })
       .catch((error) => {
         console.log(error)
-        swal("La encuesta no pudo ser guardada", "", "error")
+        swal("La evaluación no pudo ser guardada", "", "error")
       })
+      this.updateEstadoUsuario()
+      this.$router.push({ name: 'Inicio'})
+      this.$store.state.authUser[0].respondio = true
     },
     respuesta(items){
       console.log(items)
@@ -202,18 +224,28 @@ export default {
         console.log(error)
       })
     },
-    setSeleccionvuno(pregunta){
-      this.respuestaEncuesta.pregunta = pregunta.id
-      this.respuestaEncuesta.respuesta = pregunta.respuesta
-      this.respuestaEncuesta.evaluado = this.idUsuario
-      this.respuestaEncuesta.rol = this.rolUsuario
-      this.respuestaEncuesta.proceso = this.procesoUsuario
-      this.listaRespuestaEncuesta.push(this.respuestaEncuesta)
-      console.log(pregunta)
-      console.log(this.listaRespuestaEncuesta)
-      this.respuestaEncuesta = { }
+    updateEstadoUsuario(){
+      const path = 'http://localhost:8000/api/v1.0/usuarios/'+this.idUsuario+'/'
+       let form = {
+        "nombre" : this.nombre,
+        "apellido" : this.apellido,
+        "cedula" : this.cedula,
+        "password" : this.password,
+        "actividad_colectiva" : this.actividad_colectiva,
+        "ips" : this.ips,
+        "cargo" : this.cargo,
+        "proceso" : this.proceso,
+        "rol" : this.rol,
+        "respondio" : this.RESPONDIO
+      };
+			axios.put(path, form,  {'headers': {'Authorization' : 'JWT ' + this.$store.state.jwt}}).then((response) => {
+        console.log("estado usuario modificado")
+			})
+			.catch((error) => {
+        console.log(error)
+      })
     },
-    setSeleccionvdos(pregunta){
+    setSelecciones(pregunta){
       let repetido = null
       let index = 0
 
@@ -252,9 +284,6 @@ export default {
         console.log(this.listaRespuestaEncuesta)
         this.respuestaEncuesta = { }
       }
-
-
-
     }
   },
   created() {
