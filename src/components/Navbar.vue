@@ -11,7 +11,7 @@
       </b-navbar>
     </div>
     <div>
-      <div>
+      <div v-if="this.rolUsuario===this.EVALUADO">
 	      <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-close-on-route-change="true" no-header visible width="250px">
 	    	  <template v-slot:default="">
             <div class="p-3">
@@ -21,7 +21,24 @@
               <nav class="mb-3">
                 <b-nav vertical>
                   <b-button class="btn"  :to="{name: 'Inicio'}" block><b-icon icon="house-fill"></b-icon>&nbsp;&nbsp;Inicio</b-button>
-	              	<b-button class="btn"  :to="{name: 'EncuestaEvaluado'}" block><b-icon icon="clipboard-check"></b-icon>&nbsp;&nbsp;Responder Encuesta</b-button>
+	              	<b-button b-button class="btn"  :to="{name: 'EncuestaEvaluado'}" block><b-icon icon="clipboard-check"></b-icon>&nbsp;&nbsp;Responder Evaluación</b-button>
+	            	</b-nav>
+	          	</nav>
+	        	</div>
+	        </template>
+	      </b-sidebar>
+	  	</div>
+      <div v-else>
+	      <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-close-on-route-change="true" no-header visible width="250px">
+	    	  <template v-slot:default="">
+            <div class="p-3">
+              <figure class="image-logo">
+                <img :to="{ name: 'Inicio' }" class="logo" src='@/assets/logo_agesoc.png'>
+              </figure>
+              <nav class="mb-3">
+                <b-nav vertical>
+                  <b-button class="btn"  :to="{name: 'Inicio'}" block><b-icon icon="house-fill"></b-icon>&nbsp;&nbsp;Inicio</b-button>
+	              	<b-button b-button class="btn"  :to="{name: 'EncuestaEvaluado'}" block><b-icon icon="clipboard-check"></b-icon>&nbsp;&nbsp;Responder Evaluación</b-button>
                   <b-button class="btn"  :to="{name: 'ListarUsuario'}" block><b-icon icon="people-fill"></b-icon>&nbsp;&nbsp;Usuarios</b-button>
                   <b-button class="btn"  :to="{name: 'ListarPregunta'}" block><b-icon icon="question-square-fill"></b-icon>&nbsp;&nbsp;Preguntas</b-button>
                   <b-button class="btn"  :to="{name: 'ListarRespuesta'}" block><b-icon icon="check-square-fill"></b-icon>&nbsp;&nbsp;Respuestas</b-button>
@@ -34,7 +51,7 @@
 	        	</div>
 	        </template>
 	      </b-sidebar>
-	  	</div>
+      </div>
     </div>
   </div>
 </template>
@@ -42,8 +59,13 @@
 <script>
 export default {
   data () {
+
     return {
-      usuario : this.$store.state.authUser[0].nombre
+      EVALUADO : 1,
+      EVALUADOR : 2,
+      AGREMIADO : 3,
+      usuario : this.$store.state.authUser[0].nombre,
+      rolUsuario : this.$store.state.authUser[0].rol
     }
   },
   methods: {

@@ -68,7 +68,7 @@ export default new Router({
       component: CrearRol
     },
     {
-      path: '/lista_cargo',
+      path: '/lista_rol',
       name: 'ListarRol',
       component: ListarRol
     },

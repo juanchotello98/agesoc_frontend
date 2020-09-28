@@ -89,8 +89,9 @@
                   </div>
               </div>
 
-              <br>
+
               <div class="row">
+                <br>
                 <div class="col text-left">
                   <b-button type="submit" class="btn-large-space" variant="success">Crear</b-button>
                   <b-button :to="{name: 'ListarUsuario'}" class="btn" variant="secondary">Volver</b-button>

@@ -18,7 +18,7 @@
               <form class="login form">
                 <div class="form-group row">
                   <label id="my-label" for="cedula" class="col-sm-6 col-form-label"><b>Cedula</b></label>
-                  <input type="text" v-model="cedula" name="cedula" class="form-control">
+                  <input type="text" v-model="cedula" name="cedula" maxlength="10" class="form-control">
                 </div>
 
                 <div class="form-group row">

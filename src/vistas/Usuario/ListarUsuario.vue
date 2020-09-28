@@ -1,29 +1,40 @@
 <template lang="html">
 <div>
-  <div class="container">
-    <div class="row">
-      <div class="col text-left">
-        <div>
-          <b><h3>LISTA DE USUARIOS</h3></b>
-          <b-button id="btn" size="sm" :to="{name: 'CrearUsuario'}" variant="success" >Crear Usuario</b-button>
+  <div v-if="this.rolUsuario===1">
+    <div class="container">
+      <div class="row">
+        <div class="col text-left">
+          <b><h3>NO TIENE PERMISOS PARA ACCEDER A ESTA VISTA</h3></b>
         </div>
-        <br>
       </div>
     </div>
-    <div class="row">
-      <div class="col text-left">
-        <div v-if="usuarios.length===0" class="col-md-10">
-          <b-spinner variant="primary" label="Spinning"></b-spinner>
-          <span class="primary">Cargando...</span>
+  </div>
+  <div v-else>
+    <div class="container">
+      <div class="row">
+        <div class="col text-left">
+          <div>
+            <b><h3>LISTA DE USUARIOS</h3></b>
+            <b-button id="btn" size="sm" :to="{name: 'CrearUsuario'}" variant="success" >Crear Usuario</b-button>
+          </div>
+          <br>
         </div>
-        <div v-else class="col-md-10">
-          <b-table class="tabla" id="tabla" striped hover :items="usuarios" :fields="campos" :per-page="perPage" :current-page="currentPage" default>
-            <template v-slot:cell(action)="data">
-              <b-button size="sm" variant="primary" :to="{ name: 'EditarUsuario', params: { usuarioId: data.item.id } }">Editar</b-button>
-            </template>
-          </b-table>
-          <b-pagination align="center" v-model="currentPage" :total-rows="rows" :per-page="perPage" :aria-controls="tabla">
-          </b-pagination>
+      </div>
+      <div class="row">
+        <div class="col text-left">
+          <div v-if="usuarios.length===0" class="col-md-10">
+            <b-spinner variant="primary" label="Spinning"></b-spinner>
+            <span class="primary">Cargando...</span>
+          </div>
+          <div v-else class="col-md-10">
+            <b-table class="tabla" id="tabla" striped hover :items="usuarios" :fields="campos" :per-page="perPage" :current-page="currentPage" default>
+              <template v-slot:cell(action)="data">
+                <b-button size="sm" variant="primary" :to="{ name: 'EditarUsuario', params: { usuarioId: data.item.id } }">Editar</b-button>
+              </template>
+            </b-table>
+            <b-pagination align="center" v-model="currentPage" :total-rows="rows" :per-page="perPage" :aria-controls="tabla">
+            </b-pagination>
+          </div>
         </div>
       </div>
     </div>
@@ -36,6 +47,7 @@ import axios from 'axios'
 export default {
   data(){
     return {
+      rolUsuario : this.$store.state.authUser[0].rol,
       campos:[
         { key: 'id', label: 'ID' },
         { key: 'cedula', label: 'Cedula' },
